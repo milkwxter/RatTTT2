@@ -31,3 +31,17 @@ end
 function ROLE:Initialize()
   roles.SetBaseRole(self, ROLE_INNOCENT)
 end
+
+if SERVER then
+	-- Give Loadout on respawn and rolechange
+	function ROLE:GiveRoleLoadout(ply, isRoleChange)
+    --Start the rat clock
+    STATUS:AddTimedStatus(ply, "ttt2_rat_expose_timer", 10, true)
+    timer.Create("ttt2_rat_clock_timer", 10, 1, function() exposeTraitorToRat() end)
+	end
+
+	-- Remove Loadout on death and rolechange
+	function ROLE:RemoveRoleLoadout(ply, isRoleChange)
+    STATUS.RemoveStatus("ttt2_rat_expose_timer")
+	end
+end

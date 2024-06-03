@@ -14,7 +14,21 @@ end
 
 -- Function that returns the name of a Traitor
 function exposeTraitorToRat()
-    LANG.MsgAll("It worked.", nil, MSG_MSTACK_WARN)
+	-- loop through each player currently in the server
+	local ratTraitorString = "The traitors are as follows: "
+	local ratTraitorCount = 0
+	for i, v in ipairs( player.GetAll() ) do
+		if (v:GetRealTeam() == "traitors") then
+			ratTraitorString = ratTraitorString .. v:GetName() .. ", "
+			ratTraitorCount = ratTraitorCount + 1
+		end
+	end
+
+	-- tell rat how many traitors there are
+	LANG.MsgAll("There are " ..  ratTraitorCount .. " traitors in the match.", nil, MSG_MSTACK_WARN)
+
+	-- Print our final string
+	LANG.MsgAll(ratTraitorString, nil, MSG_MSTACK_WARN)
 end
 
 --hook that will increase bodies consumed by one

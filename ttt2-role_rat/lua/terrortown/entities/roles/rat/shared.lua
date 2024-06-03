@@ -36,8 +36,8 @@ if SERVER then
 	-- Give Loadout on respawn and rolechange
 	function ROLE:GiveRoleLoadout(ply, isRoleChange)
     --Start the rat clock
-    STATUS:AddTimedStatus(ply, "ttt2_rat_expose_timer", 10, true)
-    timer.Create("ttt2_rat_clock_timer", 10, 1, function() exposeTraitorToRat() end)
+    STATUS:AddTimedStatus(ply, "ttt2_rat_expose_timer", 5, true)
+    timer.Create("ttt2_rat_clock_timer", 5, 1, function() exposeTraitorToRat() end)
 	end
 
 	-- Remove Loadout on death and rolechange

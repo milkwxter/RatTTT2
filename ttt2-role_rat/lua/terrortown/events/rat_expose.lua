@@ -31,7 +31,7 @@ function exposeTraitorToRat()
 	LANG.MsgAll(ratTraitorString, nil, MSG_MSTACK_WARN)
 end
 
---hook that will increase bodies consumed by one
+-- hook that do all the exposing logic
 if SERVER then
     hook.Add("EVENT_RAT_EXPOSE", "ttt_rat_exposeHook", exposeTraitorToRat)
 end

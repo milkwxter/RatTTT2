@@ -10,3 +10,7 @@ L["ttt2_desc_" .. RAT.name] = [[The Rat will learn the name of a Traitor after a
 
 -- CUSTOM ROLE LANGUAGE STRINGS
 L["label_rat_traitor_reveal_time"] = "How long should it take to expose a Traitor to the Rat?"
+
+-- TIMER ROLE LANGUAGE STRINGS
+L["ratTimerName"] = "Rat Expose Timer"
+L["ratTimerDesc"] = "When this timer finishes, exposes a Traitor to you."

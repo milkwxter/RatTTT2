@@ -6,8 +6,8 @@ if CLIENT then
 		STATUS:RegisterStatus("ttt2_rat_expose_timer", {
 			hud = Material("vgui/ttt/dynamic/roles/icon_rat.vmt"),
 			type = "good",
-			name = "Rat Expose Timer",
-			sidebarDescription = "When this timer finishes, exposes a Traitor to you."
+			name = "ratTimerName",
+			sidebarDescription = "ratTimerDesc"
 		})
 	end)
 end

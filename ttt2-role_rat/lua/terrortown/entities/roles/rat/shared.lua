@@ -37,8 +37,8 @@ if SERVER then
 	-- Give Loadout on respawn and rolechange
 	function ROLE:GiveRoleLoadout(ply, isRoleChange)
     --Start the rat clock
-    STATUS:AddTimedStatus(ply, "ttt2_rat_expose_timer", 5, true)
-    timer.Create("ttt2_rat_clock_timer", 5, 1, function()
+    STATUS:AddTimedStatus(ply, "ttt2_rat_expose_timer", GetConVar("ttt2_rat_traitor_reveal_timer"):GetInt(), true)
+    timer.Create("ttt2_rat_clock_timer", GetConVar("ttt2_rat_traitor_reveal_timer"):GetInt(), 1, function()
       -- call our custom function to out the traitors
       exposeTraitorToRat()
       -- highlight the rat for all traitors
@@ -94,4 +94,18 @@ if CLIENT then
 		mvData:AddDescriptionLine(ParT("marker_vision_distance", {distance = distance}))
 		mvData:AddDescriptionLine(TryT(mvObject:GetVisibleForTranslationKey()), COLOR_SLATEGRAY)
 	end)
+end
+
+-- adding convars to the TTT2 menu
+if CLIENT then
+  function ROLE:AddToSettingsMenu(parent)
+    local form = vgui.CreateTTT2Form(parent, "header_roles_additional")
+    form:MakeSlider({
+      serverConvar = "ttt2_rat_traitor_reveal_timer",
+      label = "label_rat_traitor_reveal_time",
+      min = 60,
+      max = 240,
+      decimal = 0,
+    })
+  end
 end

@@ -30,6 +30,7 @@ function exposeTraitorToRat()
 
 	-- Create a string for the traitor
 	local ratTraitorString = "One of the traitors is: " .. randTraitor .. ". Kill him or die trying."
+  
 	-- Tell the traitor and the rat certain messages
 	net.Start("ttt2_rat_exposed_net")
 	net.WriteString(ratTraitorString)

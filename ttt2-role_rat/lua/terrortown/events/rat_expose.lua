@@ -15,23 +15,25 @@ end
 -- Function that returns the name of a Traitor
 function exposeTraitorToRat()
 	-- loop through each player currently in the server
-	local ratTraitorString = "The traitors are as follows: "
 	local ratTraitorCount = 0
+	traitorTable = {}
 	for i, v in ipairs( player.GetAll() ) do
 		if (v:GetRealTeam() == "traitors") then
-			ratTraitorString = ratTraitorString .. v:GetName() .. ", "
+			--Create a table and add traitors to that table
+			table.insert(traitorTable,v:GetName())  
 			ratTraitorCount = ratTraitorCount + 1
 		end
 	end
-
-	-- tell rat how many traitors there are
-	LANG.MsgAll("There are " ..  ratTraitorCount .. " traitors in the match.", nil, MSG_MSTACK_WARN)
-
-	-- Print our final string
+	--Randomly select an element in that table
+	local randTraitor = traitorTable[math.random(#traitorTable)]
+	local ratTraitorString = "One of the traitors is: " .. randTraitor .. ". They are coming for you..."
+	local countTraitorString = "There are " .. ratTraitorCount .. "traitors this match."
 	LANG.MsgAll(ratTraitorString, nil, MSG_MSTACK_WARN)
+	
+	-- TODO Print a message using EPOP
 end
 
--- hook that do all the exposing logic
+--hook that will increase bodies consumed by one
 if SERVER then
     hook.Add("EVENT_RAT_EXPOSE", "ttt_rat_exposeHook", exposeTraitorToRat)
 end

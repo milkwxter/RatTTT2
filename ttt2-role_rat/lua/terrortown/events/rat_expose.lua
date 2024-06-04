@@ -34,7 +34,7 @@ function exposeTraitorToRat()
 	-- TODO Print a message using EPOP
 end
 
---hook that will increase bodies consumed by one
+--hook that expose the traitor to the rat
 if SERVER then
     hook.Add("EVENT_RAT_EXPOSE", "ttt_rat_exposeHook", exposeTraitorToRat)
 end

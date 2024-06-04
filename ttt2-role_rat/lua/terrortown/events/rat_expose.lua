@@ -25,10 +25,10 @@ function exposeTraitorToRat()
 	end
 
 	-- tell rat how many traitors there are
-	LANG.MsgAll("There are " ..  ratTraitorCount .. " traitors in the match.", nil, MSG_MSTACK_WARN)
+	LANG.Msg(ROLE_RAT, "There are " ..  ratTraitorCount .. " traitors in the match.", nil, MSG_MSTACK_WARN)
 
 	-- Print our final string
-	LANG.MsgAll(ratTraitorString, nil, MSG_MSTACK_WARN)
+	LANG.Msg(ROLE_RAT, ratTraitorString, nil, MSG_MSTACK_WARN)
 end
 
 -- hook that do all the exposing logic

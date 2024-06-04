@@ -1,6 +1,5 @@
 if SERVER then
 	AddCSLuaFile()
-
 	resource.AddFile("materials/vgui/ttt/dynamic/roles/icon_rat.vmt")
 end
 
@@ -31,6 +30,8 @@ end
 function ROLE:Initialize()
   roles.SetBaseRole(self, ROLE_INNOCENT)
 end
+
+
 
 if SERVER then
 	-- Give Loadout on respawn and rolechange

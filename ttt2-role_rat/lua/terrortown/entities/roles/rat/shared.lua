@@ -53,8 +53,6 @@ if SERVER then
           mvObject:SyncToClients()
         end
 		  end
-      -- Play a sound for the rat
-      --surface.PlaySound("rat_squeak.mp3")
     end)
 	end
 
@@ -95,4 +93,15 @@ if CLIENT then
 		mvData:AddDescriptionLine(ParT("marker_vision_distance", {distance = distance}))
 		mvData:AddDescriptionLine(TryT(mvObject:GetVisibleForTranslationKey()), COLOR_SLATEGRAY)
 	end)
+end
+
+if CLIENT then
+  net.Receive("ttt2_rat_exposed_net", function()
+      -- read the string from the net message
+      local stringTitleRat = net.ReadString()
+      -- Play a sound for the rat
+      surface.PlaySound("rat_squeak.mp3")
+      -- present the rat the message the server sent
+      EPOP:AddMessage(self, {text =  stringTitleRat, color = TRAITOR.color}, {text = "The Traitors can see your location now. Get ready for a fight!", color = RAT.color}, 6, true)
+  end)
 end

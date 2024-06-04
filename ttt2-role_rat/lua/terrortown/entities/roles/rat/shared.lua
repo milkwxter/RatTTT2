@@ -53,13 +53,14 @@ if SERVER then
           mvObject:SyncToClients()
         end
 		  end
+      -- Play a sound for the rat
+      --surface.PlaySound("rat_squeak.mp3")
     end)
 	end
 
 	-- Remove Loadout on death and rolechange
 	function ROLE:RemoveRoleLoadout(ply, isRoleChange)
   timer.Stop("ttt2_rat_clock_timer")
-  ply:RemoveMarkerVision("player_rat")
 	end
 
   -- Remove wallhacks when the rat dies

@@ -14,27 +14,32 @@ end
 
 -- Function that returns the name of a Traitor
 function exposeTraitorToRat()
-	-- loop through each player currently in the server
-	local ratTraitorCount = 0
+	-- Create a table
 	traitorTable = {}
+
+	-- loop through each player currently in the server
 	for i, v in ipairs( player.GetAll() ) do
-		if (v:GetRealTeam() == "traitors") then
-			--Create a table and add traitors to that table
-			table.insert(traitorTable,v:GetName())  
-			ratTraitorCount = ratTraitorCount + 1
+		if ( v:GetRealTeam() == "traitors" ) then
+			-- add traitors to that table
+			table.insert(traitorTable, v:GetName())
 		end
 	end
+
 	--Randomly select an element in that table
 	local randTraitor = traitorTable[math.random(#traitorTable)]
+
+	-- Create a string for the traitor
 	local ratTraitorString = "One of the traitors is: " .. randTraitor .. ". Kill him or die trying."
-	local countTraitorString = "There are " .. ratTraitorCount .. "traitors this match. And they know where you are now!"
-	LANG.Msg(ROLE_RAT, countTraitorString, nil, MSG_MSTACK_WARN)
-	LANG.Msg(ROLE_RAT, ratTraitorString, nil, MSG_MSTACK_WARN)
 	
-	-- TODO Print a message using EPOP
+	-- Tell the traitor and the rat certain messages
+	net.Start("ttt2_rat_exposed_net")
+	net.WriteString(ratTraitorString)
+	net.Broadcast()
 end
 
---hook that expose the traitor to the rat
 if SERVER then
+	-- hook that exposes the traitor to the rat
     hook.Add("EVENT_RAT_EXPOSE", "ttt_rat_exposeHook", exposeTraitorToRat)
+	-- required for network messages
+	util.AddNetworkString("ttt2_rat_exposed_net")
 end

@@ -39,14 +39,18 @@ if SERVER then
     --Start the rat clock
     STATUS:AddTimedStatus(ply, "ttt2_rat_expose_timer", GetConVar("ttt2_rat_traitor_reveal_timer"):GetInt(), true)
     timer.Create("ttt2_rat_clock_timer", GetConVar("ttt2_rat_traitor_reveal_timer"):GetInt(), 1, function()
+<<<<<<< Updated upstream
       -- call our custom function to out the traitors
       exposeTraitorToRat()
+=======
+>>>>>>> Stashed changes
       -- highlight the rat for all traitors
       for _, ply in ipairs( player.GetAll() ) do
         -- check if player is valid
         if not IsValid(ply) then return end
         -- check if player is actually a rat
         if ply:GetRoleString() == "rat" then
+		  hook.Run("Run UI")
           -- do rat marker
           local mvObject = ply:AddMarkerVision("player_rat")
           mvObject:SetOwner(TEAM_TRAITOR)
@@ -56,7 +60,6 @@ if SERVER then
 		  end
     end)
 	end
-
 	-- Remove Loadout on death and rolechange
 	function ROLE:RemoveRoleLoadout(ply, isRoleChange)
     timer.Stop("ttt2_rat_clock_timer")

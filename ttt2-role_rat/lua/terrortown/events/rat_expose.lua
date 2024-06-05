@@ -29,17 +29,17 @@ function exposeTraitorToRat()
 	local randTraitor = traitorTable[math.random(#traitorTable)]
 
 	-- Create a string for the traitor
+<<<<<<< Updated upstream
 	local ratTraitorString = "One of the traitors is: " .. randTraitor .. ". Kill him or die trying."
   
+=======
+	local ratTraitorString = "One of the traitors is: " .. tostring(randTraitor) .. ". Kill him or die trying."
+>>>>>>> Stashed changes
 	-- Tell the traitor and the rat certain messages
-	net.Start("ttt2_rat_exposed_net")
-	net.WriteString(ratTraitorString)
-	net.Broadcast()
+	return ratTraitorString
 end
-
 if SERVER then
 	-- hook that exposes the traitor to the rat
     hook.Add("EVENT_RAT_EXPOSE", "ttt_rat_exposeHook", exposeTraitorToRat)
 	-- required for network messages
-	util.AddNetworkString("ttt2_rat_exposed_net")
 end

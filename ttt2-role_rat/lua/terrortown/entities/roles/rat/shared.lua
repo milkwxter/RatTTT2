@@ -58,7 +58,7 @@ if SERVER then
           EPOP:AddMessage(ply, {text =  ratTraitorString, color = TRAITOR.color}, {text = "The Traitors can see your location now. Get ready for a fight!", color = RAT.color}, 6, true)
           -- Tell the Rat client to hear the sound
           net.Start("ttt2_rat_sound_net")
-          net.Broadcast()
+          net.Send(ply)
         end
 		  end
     end)

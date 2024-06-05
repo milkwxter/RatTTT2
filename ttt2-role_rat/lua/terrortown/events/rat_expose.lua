@@ -27,14 +27,9 @@ function exposeTraitorToRat()
 
 	--Randomly select an element in that table
 	local randTraitor = traitorTable[math.random(#traitorTable)]
-
+	
 	-- Create a string for the traitor
-<<<<<<< Updated upstream
-	local ratTraitorString = "One of the traitors is: " .. randTraitor .. ". Kill him or die trying."
-  
-=======
 	local ratTraitorString = "One of the traitors is: " .. tostring(randTraitor) .. ". Kill him or die trying."
->>>>>>> Stashed changes
 	-- Tell the traitor and the rat certain messages
 	return ratTraitorString
 end

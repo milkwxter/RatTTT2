@@ -29,17 +29,11 @@ function exposeTraitorToRat()
 	local randTraitor = traitorTable[math.random(#traitorTable)]
 
 	-- Create a string for the traitor
-	local ratTraitorString = "One of the traitors is: " .. randTraitor .. ". Kill him or die trying."
-  
-	-- Tell the traitor and the rat certain messages
-	net.Start("ttt2_rat_exposed_net")
-	net.WriteString(ratTraitorString)
-	net.Broadcast()
+	ratTraitorString = "One of the traitors is: " .. randTraitor .. ". Kill him or die trying."
+	-- Since this string is not local, we can access it later in the shared.lua file
 end
 
 if SERVER then
 	-- hook that exposes the traitor to the rat
     hook.Add("EVENT_RAT_EXPOSE", "ttt_rat_exposeHook", exposeTraitorToRat)
-	-- required for network messages
-	util.AddNetworkString("ttt2_rat_exposed_net")
 end

@@ -1,6 +1,8 @@
 if SERVER then
 	AddCSLuaFile()
 	resource.AddFile("materials/vgui/ttt/dynamic/roles/icon_rat.vmt")
+  -- required for network messages
+	util.AddNetworkString("ttt2_rat_sound_net")
 end
 
 function ROLE:PreInitialize()
@@ -52,6 +54,11 @@ if SERVER then
           mvObject:SetOwner(TEAM_TRAITOR)
           mvObject:SetVisibleFor(VISIBLE_FOR_TEAM)
           mvObject:SyncToClients()
+          --displaying the proper message
+          EPOP:AddMessage(ply, {text =  ratTraitorString, color = TRAITOR.color}, {text = "The Traitors can see your location now. Get ready for a fight!", color = RAT.color}, 6, true)
+          -- Tell the Rat client to hear the sound
+          net.Start("ttt2_rat_sound_net")
+          net.Broadcast()
         end
 		  end
     end)
@@ -109,4 +116,11 @@ if CLIENT then
       decimal = 0,
     })
   end
+end
+
+if CLIENT then
+  net.Receive("ttt2_rat_sound_net", function()
+    --playing the squeak!
+		surface.PlaySound("rat_squeak.mp3")
+  end)
 end

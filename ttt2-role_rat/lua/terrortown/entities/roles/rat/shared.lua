@@ -66,8 +66,9 @@ if SERVER then
 
 	-- Remove Loadout on death and rolechange
 	function ROLE:RemoveRoleLoadout(ply, isRoleChange)
-    timer.Stop("ttt2_rat_clock_timer")
+    timer.Remove("ttt2_rat_clock_timer")
     ply:RemoveMarkerVision("player_rat")
+    STATUS:RemoveStatus(ply, "ttt2_rat_expose_timer")
 	end
 
   -- Remove wallhacks when the rat dies

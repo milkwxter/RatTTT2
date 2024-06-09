@@ -22,7 +22,7 @@ function ROLE:PreInitialize()
     minPlayers = 6, -- minimum amount of players until this role is able to get selected
     credits = 0, -- the starting credits of a specific role
     togglable = true, -- option to toggle a role for a client if possible (F1 menu)
-    random = 100,
+    random = 33,
     traitorButton = 0, -- can use traitor buttons
     shopFallback = SHOP_DISABLED
   }

@@ -80,10 +80,11 @@ if SERVER then
 	end)
 
   -- Remove wallhacks when the rat dies
-	hook.Add("TTTEndRound", "RatRoundEnd", function(rag, ply)
-		if not IsValid(rag) or not IsValid(ply) then return end
-    if ply:GetRoleString() == "rat" then
-      ply:RemoveMarkerVision("player_rat")
+	hook.Add("TTTEndRound", "RatRoundEnd", function()
+    for _, v in ipairs(player.GetAll()) do
+      if v:GetSubRole() == ROLE_RAT then
+        v:RemoveMarkerVision("player_rat")
+      end
     end
 	end)
 end

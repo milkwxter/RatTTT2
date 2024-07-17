@@ -1,4 +1,5 @@
 CreateConVar("ttt2_rat_traitor_reveal_timer", 120, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
+CreateConVar("ttt2_rat_instant_expose", 0, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 
 hook.Add("TTTUlxDynamicRCVars", "TTTUlxDynamicRatCVars", function(tbl)
   tbl[ROLE_RAT] = tbl[ROLE_RAT] or {}

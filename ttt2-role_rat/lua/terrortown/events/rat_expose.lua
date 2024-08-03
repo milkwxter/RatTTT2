@@ -14,6 +14,7 @@ end
 
 -- Function that returns the name of a Traitor
 function exposeTraitorToRat()
+	noTraitors = false
 	-- Create a table
 	traitorTable = {}
 
@@ -24,10 +25,13 @@ function exposeTraitorToRat()
 			table.insert(traitorTable, v:GetName())
 		end
 	end
-
+	--Check if table is empty, end function if so
+	if next(traitorTable) == nil then 
+		noTraitors = true
+		return end
 	--Randomly select an element in that table
 	local randTraitor = traitorTable[math.random(#traitorTable)]
-
+	
 	-- Create a string for the traitor
 	ratTraitorString = "One of the traitors is: " .. randTraitor .. ". Kill him or die trying."
 	-- Since this string is not local, we can access it later in the shared.lua file

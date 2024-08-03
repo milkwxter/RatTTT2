@@ -64,6 +64,9 @@ if SERVER then
     timer.Create("ttt2_rat_clock_timer", GetConVar("ttt2_rat_traitor_reveal_timer"):GetInt(), 1, function()
       -- call our custom function to out the traitors
       exposeTraitorToRat()
+	  if noTraitors == true then 
+		 EPOP:AddMessage(ply, {text =  "No traitors around...", color = TRAITOR.color}, {text = "You have no one to rat!", color = RAT.color}, 6, true)
+	  return end
 	  --displaying the proper message
 	  EPOP:AddMessage(ply, {text =  ratTraitorString, color = TRAITOR.color}, {text = "The Traitors can see your location now. Get ready for a fight!", color = RAT.color}, 6, true)
 	  -- Tell the Rat client to hear the sound
